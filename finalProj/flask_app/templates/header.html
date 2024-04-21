@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block header %}
+<nav class="navbar flex w-full justify-between ">
+    <a class="m-5 navlink" href="{{ url_for('users.index') }}">
+        <span class="hidden sm:block">Home</span>
+        <span class="block sm:hidden">Home</span>
+    </a> 
+  
+    {% if current_user.is_authenticated %}
+    <div class="flex">
+        <a class="my-5 mr-5 ml-0 navlink" href="{{ url_for('users.account') }}">Account</a>
+        <a class="my-5 mr-5 ml-0 navlink !bg-green-400/20 hover:!bg-green-500/50 !text-green-400 hover:!text-green-300" href="{{ url_for('users.logout') }}">Logout</a>
+    </div>
+    {% else %}
+    <div class="flex">
+        <a class="my-5 mr-5 ml-0 navlink" href="{{ url_for('users.login') }}">Login</a>
+        <a class="my-5 mr-5 ml-0 navlink" href="{{ url_for('users.register') }}">Register</a>
+    </div>
+    {% endif %}
+</nav>
+  <a  class="fixed bottom-0 right-0 mb-5 mr-5 navlink">
+        <button id="themetoggle" >Toggle Theme</button>
+    </a> 
+{% block content %}{% endblock %}{% endblock %}

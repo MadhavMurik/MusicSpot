@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <script src="https://cdn.tailwindcss.com"></script> 
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Basic User Login</title>
+    {% endif %}
+</head>
+<body>
+
+    {% block header %}
+    <h1>Overrideable Content</h1>
+    {% endblock %}
+    <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const themeToggle = document.getElementById("themetoggle");
+    const html = document.querySelector("html");
+    let darkModeEnabled = localStorage.getItem("darkModeEnabled");
+
+    // Check if dark mode preference is stored in localStorage
+    if (darkModeEnabled === "true") {
+      html.classList.add("dark-mode");
+    }
+
+    themeToggle.addEventListener("click", function() {
+      // Toggle dark mode class
+      html.classList.toggle("dark-mode");
+      // Update dark mode preference in localStorage
+      darkModeEnabled = html.classList.contains("dark-mode");
+      localStorage.setItem("darkModeEnabled", darkModeEnabled);
+    });
+  });
+</script>
+</body>
+</html>

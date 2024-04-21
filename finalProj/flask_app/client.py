@@ -65,9 +65,9 @@ class SpotifyClient(object):
 
         data = resp.json()
 
-        if "error" in data:
-            raise ValueError(f'[ERROR]: Error retrieving results: \'{
-                             data["error"]["message"]}\' ')
+if "error" in data:
+    raise ValueError(f'[ERROR]: Error retrieving results: \'{data["error"]["message"]}\' ')
+
 
         search_results_json = data["tracks"]["items"]
 

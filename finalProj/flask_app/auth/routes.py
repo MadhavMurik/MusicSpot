@@ -24,12 +24,14 @@ sp_oauth = SpotifyOAuth(client_id=SPOTIFY_CLIENT_ID,
 
 
 @auth.route('/connect')
+@login_required
 def connect():
     auth_url = sp_oauth.get_authorize_url()
     return redirect(auth_url)
 
 
 @auth.route('/callback')
+@login_required
 def callback():
     code = request.args.get('code')
     token_info = sp_oauth.get_access_token(code)
@@ -37,6 +39,7 @@ def callback():
     return redirect(url_for('.top_tracks'))
 
 @auth.route('/top_tracks')
+@login_required
 def top_tracks():
     token_info = session.get('token_info', None)
     if not token_info:
